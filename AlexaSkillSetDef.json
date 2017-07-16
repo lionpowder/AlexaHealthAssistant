@@ -1,4 +1,7 @@
-me": "AMAZON.CancelIntent",
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
       "samples": []
     },
     {
@@ -68,9 +71,55 @@ me": "AMAZON.CancelIntent",
           "samples": []
         }
       ]
+    },
+    {
+      "name": "GetSideEffects",
+      "samples": [
+        "what is the side effect of {drug}",
+        "what are the side effects of {drug}",
+        "I want to know the side effects of {drug}",
+        "I want to know the side effect of {drug}"
+      ],
+      "slots": [
+        {
+          "name": "drug",
+          "type": "Drug",
+          "samples": [
+            "{drug}"
+          ]
+        },
+        {
+          "name": "user_name",
+          "type": "AMAZON.US_FIRST_NAME",
+          "samples": [
+            "My name is {user_name}",
+            "I'm {user_name}",
+            "{user_name}"
+          ]
+        }
+      ]
     }
   ],
   "types": [
+    {
+      "name": "Drug",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "aspirin",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "melatonin",
+            "synonyms": []
+          }
+        }
+      ]
+    },
     {
       "name": "gender",
       "values": [
@@ -155,6 +204,28 @@ me": "AMAZON.CancelIntent",
           "value": "Can I get your gender please?"
         }
       ]
+    },
+    {
+      "id": "Elicit.Intent-GetSideEffects.IntentSlot-drug",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which drug do you want"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-GetSideEffects.IntentSlot-user_name",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "what is your name please?"
+        }
+      ]
     }
   ],
   "dialog": {
@@ -198,6 +269,31 @@ me": "AMAZON.CancelIntent",
             "elicitationRequired": false,
             "confirmationRequired": false,
             "prompts": {}
+          }
+        ]
+      },
+      {
+        "name": "GetSideEffects",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "drug",
+            "type": "Drug",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-GetSideEffects.IntentSlot-drug"
+            }
+          },
+          {
+            "name": "user_name",
+            "type": "AMAZON.US_FIRST_NAME",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-GetSideEffects.IntentSlot-user_name"
+            }
           }
         ]
       }
