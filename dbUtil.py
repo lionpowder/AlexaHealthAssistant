@@ -41,3 +41,10 @@ def get_user_info(user_name):
         'gender': "M",
         'pregnancy': False
     }
+
+
+def get_drug_side_effects(user_info, drug):
+
+    # Hey, Hsuan-Heng, if you prefer, you can fill in the API here.
+
+    return "the side effect of {} is bla bla bla".format(drug)

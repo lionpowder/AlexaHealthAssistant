@@ -1,6 +1,7 @@
 import logging
 from dbUtil import insert_patient
 from dbUtil import get_user_info
+from dbUtil import get_drug_side_effects
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -106,10 +107,12 @@ def get_side_effects(intent, session):
     if not all(slot in session_attr['user_info'] for slot in required_slots):
         session_attr['user_info'] = get_user_info(session_attr['user_info']['user_name'])
 
+    side_effects = get_drug_side_effects(session_attr['user_info'], intent['slots']['drug']['value'])
+
     return build_response(
         session_attr=session_attr,
         response=build_speechlet_response(
-            output="The side effects of {} are bla bla bla".format(intent['slots']['drug']['value']),
+            output=side_effects,
             reprompt_text=None, should_end_session=False))
 
 # --------------- Events ------------------
