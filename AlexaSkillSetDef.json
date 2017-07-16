@@ -1,0 +1,206 @@
+me": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.PauseIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ResumeIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "CreateUserProfile",
+      "samples": [
+        "my name is {user_name} and I'm {user_age} years old. build a profile for me",
+        "my name is {user_name} and I'm {user_age} years old. add me to the system",
+        "my name is my name is {user_name} and I'm {user_age} years old. put me in your database",
+        "I'm {user_name} and I'm {user_age} years old. add me to your database",
+        "I'm {user_name} and {user_age} years old. construct my profile",
+        "my name is {user_name} and I'm {user_age} years old. I want you to build my profile.",
+        "create my profile",
+        "create my profile please",
+        "build my profile ",
+        "build my profile please",
+        "build my profile. My name is {user_name}",
+        "build a profile for me",
+        "create a profile for me"
+      ],
+      "slots": [
+        {
+          "name": "user_name",
+          "type": "AMAZON.US_FIRST_NAME",
+          "samples": [
+            "my name is {user_name}",
+            "i'm {user_name}",
+            "{user_name}"
+          ]
+        },
+        {
+          "name": "user_age",
+          "type": "AMAZON.NUMBER",
+          "samples": [
+            "I'm {user_age} years old",
+            "I'm {user_age}",
+            "{user_age}"
+          ]
+        },
+        {
+          "name": "gender",
+          "type": "gender",
+          "samples": [
+            "I'm a {gender}",
+            "I'm {gender}",
+            "{gender}"
+          ]
+        },
+        {
+          "name": "pregnancy",
+          "type": "YesOrNo",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "gender",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "male",
+            "synonyms": [
+              "guy",
+              "man",
+              "men"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "female",
+            "synonyms": [
+              "girl",
+              "woman",
+              "women"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "YesOrNo",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "yes",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "no",
+            "synonyms": []
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-CreateUserProfile.IntentSlot-user_name",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "what's your name"
+        },
+        {
+          "type": "PlainText",
+          "value": "can i get your name"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-CreateUserProfile.IntentSlot-user_age",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "how old are you"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-CreateUserProfile.IntentSlot-gender",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Can I get your gender please?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "CreateUserProfile",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "user_name",
+            "type": "AMAZON.US_FIRST_NAME",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-CreateUserProfile.IntentSlot-user_name"
+            }
+          },
+          {
+            "name": "user_age",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-CreateUserProfile.IntentSlot-user_age"
+            }
+          },
+          {
+            "name": "gender",
+            "type": "gender",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-CreateUserProfile.IntentSlot-gender"
+            }
+          },
+          {
+            "name": "pregnancy",
+            "type": "YesOrNo",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}
