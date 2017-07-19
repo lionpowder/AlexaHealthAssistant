@@ -104,7 +104,20 @@ def get_side_effects(intent, session):
     else:
         session_attr['user_info']['user_name'] = intent['slots']['user_name']['value']
 
-    if not all(slot in session_attr['user_info'] for slot in required_slots):
+    if 'status' in session_attr['user_info'] and session_attr['user_info']['status'] == 'not_found':
+        if all(slot in session_attr['user_info'] for slot in required_slots):
+            session_attr['user_info'].pop('status')
+        else:
+            for slot in [slot not in session_attr['user_info'] for slot in required_slots]:
+                return build_response(
+                    session_attr=session_attr,
+                    response=build_speechlet_response(
+                        output="Can I get your {} please?".format(slot),
+                        reprompt_text=None, should_end_session=False,
+                        directives=[slot_elicitation(slot)]))
+
+
+    elif not all(slot in session_attr['user_info'] for slot in required_slots):
         session_attr['user_info'] = get_user_info(session_attr['user_info']['user_name'])
 
     side_effects = get_drug_side_effects(session_attr['user_info'], intent['slots']['drug']['value'])

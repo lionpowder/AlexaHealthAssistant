@@ -25,6 +25,8 @@ except:
 
 
 def insert_patient(user_info):
+    # hey Hannah, feel free to modify this function.
+
     # with conn.cursor() as cur:
         #sql = "insert into `Patient` (`name`, `age`, `gender`, `pregnancy`) " + \
         #      "values (%s, %s, %s, %s)"
@@ -35,12 +37,25 @@ def insert_patient(user_info):
 
 
 def get_user_info(user_name):
-    return {
-        'user_name': user_name,
-        'user_age': 24,
-        'gender': "M",
-        'pregnancy': False
-    }
+
+    # Hey, Hannah, below is the mock code for getting the user info from DB.
+    # If you prefer, you can fill in the API here.
+    # basically, return the user_age, gender etc if the user_name exist in DB
+    # otherwise just return {'user_name':user_name', 'status':'not_found'}
+
+    use_mock_user_profile = True
+    if use_mock_user_profile:
+        return {
+            'user_name': user_name,
+            'user_age': 24,
+            'gender': "M",
+            'pregnancy': False
+        }
+    else:
+        return {
+            'user_name': user_name,
+            'status': 'not_found'
+        }
 
 
 def get_drug_side_effects(user_info, drug):

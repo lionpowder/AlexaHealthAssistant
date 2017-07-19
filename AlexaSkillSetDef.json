@@ -84,18 +84,27 @@
         {
           "name": "drug",
           "type": "Drug",
-          "samples": [
-            "{drug}"
-          ]
+          "samples": []
         },
         {
           "name": "user_name",
           "type": "AMAZON.US_FIRST_NAME",
-          "samples": [
-            "My name is {user_name}",
-            "I'm {user_name}",
-            "{user_name}"
-          ]
+          "samples": []
+        },
+        {
+          "name": "user_age",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        },
+        {
+          "name": "gender",
+          "type": "gender",
+          "samples": []
+        },
+        {
+          "name": "pregnant",
+          "type": "YesOrNo",
+          "samples": []
         }
       ]
     }
@@ -215,17 +224,6 @@
           "value": "which drug do you want"
         }
       ]
-    },
-    {
-      "id": "Elicit.Intent-GetSideEffects.IntentSlot-user_name",
-      "promptVersion": "1.0",
-      "definitionVersion": "1.0",
-      "variations": [
-        {
-          "type": "PlainText",
-          "value": "what is your name please?"
-        }
-      ]
     }
   ],
   "dialog": {
@@ -289,11 +287,30 @@
           {
             "name": "user_name",
             "type": "AMAZON.US_FIRST_NAME",
-            "elicitationRequired": true,
+            "elicitationRequired": false,
             "confirmationRequired": false,
-            "prompts": {
-              "elicit": "Elicit.Intent-GetSideEffects.IntentSlot-user_name"
-            }
+            "prompts": {}
+          },
+          {
+            "name": "user_age",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "gender",
+            "type": "gender",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "pregnant",
+            "type": "YesOrNo",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
           }
         ]
       }
